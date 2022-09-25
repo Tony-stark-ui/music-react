@@ -1,9 +1,10 @@
 import React from 'react';
+// Provider共享store
+import {Provider} from 'react-redux'
 
+import Routes from '@/router'
 
-import routes from "./router";
-
-import {useRoutes} from 'react-router-dom';
+import store from "./store"
 
 import HyAppHeader from "@/components/app-header";
 import HyAppFooter from "@/components/app-footer";
@@ -11,15 +12,16 @@ import HyAppFooter from "@/components/app-footer";
 
 function App() {
 
-  const GetRoutes = () => useRoutes(routes); //一定要是函数内
-
   return (
-    <div className="App">
-      <HyAppHeader/>
-      <GetRoutes/>
-      <HyAppFooter/>
-    </div>
-  );
+    <Provider store={store}>
+      <div className="App">
+        <HyAppHeader/>
+        {Routes()}
+        <HyAppFooter/>
+      </div>
+    </Provider>
+  )
+    ;
 }
 
 export default App;
